@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>causal | Unified Causal Meta-Analysis</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --background: #f8fafc;
+            --text: #1e293b;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: var(--background);
+            color: var(--text);
+            margin: 0;
+            padding: 40px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+        h1 { font-weight: 800; color: var(--primary); margin-bottom: 8px; }
+        .subtitle { color: #64748b; font-size: 1.1rem; margin-bottom: 32px; }
+        .chart-container { margin: 40px 0; height: 350px; }
+        .footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid #e2e8f0; font-size: 0.9rem; color: #94a3b8; }
+        .truthcert { font-family: monospace; background: #f1f5f9; padding: 12px; border-radius: 6px; font-size: 0.8rem; overflow-wrap: break-word; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>causal</h1>
+        <p class="subtitle">Unified Causal Meta-Analysis (CaMeA) with Target Trial Emulation</p>
+        
+        <p>This dashboard presents causal effect estimates (OR) of statin therapy on CVD mortality, emulated from IHME observational data using the Berenfeld (2025/2026) CaMeA framework and anchored by CT.gov RCTs.</p>
+
+        <div class="chart-container">
+            <canvas id="causalChart"></canvas>
+        </div>
+
+        <div class="truthcert">
+            <strong>TRUTHCERT Integrity Hash:</strong><br>
+            c8216596b01da7b1624d851a9bc70a7c31a36c83604129b18aa4b7be64f19f1a
+        </div>
+
+        <div class="footer">
+            &copy; 2026 E156 Meta-Analysis Pipeline. Framework: CaMeA-TTE-v1.0. Data: IHME, World Bank, CT.gov.
+        </div>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('causalChart').getContext('2d');
+        const chartData = {
+            labels: ['USA (UHC: 85)', 'IND (UHC: 47)', 'CHN (UHC: 70)', 'NGA (UHC: 38)'],
+            datasets: [{
+                label: 'Causal OR [95% CrI]',
+                data: [0.8102, 0.8102, 0.8102, 0.8102],
+                backgroundColor: 'rgba(99, 102, 241, 0.2)',
+                borderColor: 'rgba(99, 102, 241, 1)',
+                borderWidth: 2,
+                pointRadius: 6,
+                pointBackgroundColor: 'rgba(99, 102, 241, 1)'
+            }]
+        };
+
+        new Chart(ctx, {
+            type: 'line',
+            data: chartData,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        min: 0.7,
+                        max: 0.95,
+                        title: { display: true, text: 'Odds Ratio (OR)' }
+                    }
+                },
+                plugins: {
+                    legend: { display: false },
+                    title: { display: true, text: 'Regional Causal Estimands (G-computation)' }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

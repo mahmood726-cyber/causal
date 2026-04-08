@@ -1,0 +1,42 @@
+{
+    "model": "CaMeA-TTE-v1.0",
+    "description": "Causal Meta-Analysis with Target Trial Emulation (Berenfeld 2025/2026)",
+    "results": [
+        {
+            "location": "USA",
+            "causal_effect_or": 0.8102,
+            "ci_low": 0.7444,
+            "ci_high": 0.8936,
+            "uhc_index": 85,
+            "evidence_hash": "751e5b75b7b28f32d04657504203c7570b6cb6367299514adde1db088ffe0aef"
+        },
+        {
+            "location": "IND",
+            "causal_effect_or": 0.8102,
+            "ci_low": 0.7444,
+            "ci_high": 0.8936,
+            "uhc_index": 47,
+            "evidence_hash": "d386d370604614ec7d886a2f5e464e3cc81296d9b890737209e7906fc2756fc2"
+        },
+        {
+            "location": "CHN",
+            "causal_effect_or": 0.8102,
+            "ci_low": 0.7444,
+            "ci_high": 0.8936,
+            "uhc_index": 70,
+            "evidence_hash": "3082bc39a6e229dc5f6c1f9fe4ca67b4dbf8908ceb4bd11ca737c7e8bc3e21e7"
+        },
+        {
+            "location": "NGA",
+            "causal_effect_or": 0.8102,
+            "ci_low": 0.7444,
+            "ci_high": 0.8936,
+            "uhc_index": 38,
+            "evidence_hash": "dae48bd088425158745f4f7ef1310e9a5c90d8f2e0ba1a9ccb000a1c6c8981f2"
+        }
+    ],
+    "truthcert": {
+        "input_hash": "c8216596b01da7b1624d851a9bc70a7c31a36c83604129b18aa4b7be64f19f1a",
+        "timestamp": "2026-04-08"
+    }
+}
