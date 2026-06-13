@@ -29,7 +29,14 @@ def run_causal_meta_analysis(input_data):
     df['uhc_z'] = (df['uhc_index'] - df['uhc_index'].mean()) / df['uhc_index'].std()
     
     # Extract RCT anchor for Statin (HR 0.81 -> logHR -0.21)
-    statin_rct = [r for r in rcts if r['intervention'] == 'Statin'][0]
+    statin_anchors = [r for r in rcts if r['intervention'] == 'Statin']
+    if not statin_anchors:
+        raise ValueError(
+            "No 'Statin' RCT anchor found in input_data['rct_anchors']; "
+            "the CaMeA prior cannot be anchored. Available interventions: "
+            f"{[r.get('intervention') for r in rcts]}"
+        )
+    statin_rct = statin_anchors[0]
     log_hr_prior = np.log(statin_rct['hr'])
     log_hr_se = (np.log(statin_rct['upper_95']) - np.log(statin_rct['lower_95'])) / 3.92
     
